@@ -1,0 +1,82 @@
+1️⃣ Install Required Package
+
+Use npm to install Mongoose.
+
+npm install mongoose
+2️⃣ Create Database Connection File
+
+Create folder and file:
+
+config/db.js
+
+Example code:
+
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb://localhost:27017/mydatabase", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+
+    console.log("MongoDB Connected Successfully");
+  } catch (error) {
+    console.error("Database Connection Failed:", error);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+3️⃣ Connect Database in Server
+
+Example server.js
+
+const express = require("express");
+const connectDB = require("./config/db");
+
+const app = express();
+
+// Connect to database
+connectDB();
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Server connected to database");
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+4️⃣ Using Environment Variables
+
+Example .env file:
+
+MONGO_URI=mongodb://localhost:27017/mydatabase
+PORT=3000
+
+Updated db.js:
+
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = connectDB;
+5️⃣ Project Folder Structure
+project/
+│
+├── config/
+│   └── db.js
+│
+├── controllers/
+├── routes/
+├── server.js
+└── .env

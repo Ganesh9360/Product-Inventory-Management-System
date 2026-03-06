@@ -1,0 +1,59 @@
+1️⃣ Example: Login Feature Coding
+
+Simple login feature using HTML, CSS, and JavaScript
+
+HTML (Login Form)
+<form id="loginForm">
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button type="submit">Login</button>
+</form>
+JavaScript (Feature Logic)
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+
+  if(username === "admin" && password === "1234"){
+      alert("Login Successful");
+  } else {
+      alert("Invalid Username or Password");
+  }
+});
+2️⃣ Example: Add Product Feature
+
+Using PHP with MySQL
+
+<?php
+$conn = mysqli_connect("localhost","root","","shop");
+
+$name = $_POST['product_name'];
+$price = $_POST['price'];
+
+$sql = "INSERT INTO products (name, price) VALUES ('$name','$price')";
+mysqli_query($conn,$sql);
+
+echo "Product Added Successfully";
+?>
+3️⃣ Common Features in Applications
+Feature	Description
+Authentication	Login / Register
+CRUD Operations	Create, Read, Update, Delete
+Search	Find data quickly
+Notifications	Alerts or messages
+Payment System	Online transactions
+Dashboard	Data overview
+4️⃣ Example: CRUD Feature
+
+CRUD =
+
+C → Create
+
+R → Read
+
+U → Update
+
+D → Delete
+
+Used in most apps with databases like MongoDB or PostgreSQL.

@@ -1,0 +1,111 @@
+1️⃣ What is an ER Diagram?
+
+An ER Diagram is used in Database Management System to design how data is stored.
+
+Main parts:
+
+Entity → Table
+
+Attribute → Column
+
+Relationship → Connection between tables
+
+Example:
+
+Student ─── Enrolls ─── Course
+2️⃣ Example ER Diagram
+
+Entities:
+
+Student
+
+student_id
+
+name
+
+email
+
+Course
+
+course_id
+
+course_name
+
+Enrollment
+
+enrollment_id
+
+student_id
+
+course_id
+
+Relationship:
+
+One Student can enroll in many Courses.
+
+3️⃣ SQL Coding for ER Diagram
+
+Example in MySQL
+
+CREATE TABLE Student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100)
+);
+
+CREATE TABLE Course (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100)
+);
+
+CREATE TABLE Enrollment (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    FOREIGN KEY (student_id) REFERENCES Student(student_id),
+    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+);
+
+Explanation:
+
+PRIMARY KEY → Unique identifier
+
+FOREIGN KEY → Relationship between tables
+
+4️⃣ Types of Relationships
+1️⃣ One-to-One (1:1)
+
+Example:
+
+Person ─── Passport
+
+SQL example:
+
+passport_id INT UNIQUE
+2️⃣ One-to-Many (1:N)
+
+Example:
+
+Department ─── Employees
+
+One department → many employees.
+
+3️⃣ Many-to-Many (M:N)
+
+Example:
+
+Students ─── Courses
+
+Needs junction table like Enrollment.
+
+5️⃣ Tools to Draw ER Diagrams
+
+Popular tools:
+
+MySQL Workbench
+
+Lucidchart
+
+Draw.io
+
+Microsoft Visio

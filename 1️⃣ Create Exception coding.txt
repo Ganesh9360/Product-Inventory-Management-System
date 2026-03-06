@@ -1,0 +1,86 @@
+1️⃣ Create Exception Folder
+
+Project structure:
+
+project/
+│
+├── exceptions/
+│   └── AppError.js
+│
+├── middleware/
+│   └── errorHandler.js
+│
+└── server.js
+2️⃣ Create Custom Error Class
+
+📄 exceptions/AppError.js
+
+class AppError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.status = statusCode >= 400 && statusCode < 500 ? "fail" : "error";
+
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
+module.exports = AppError;
+3️⃣ Create Global Error Middleware
+
+📄 middleware/errorHandler.js
+
+const errorHandler = (err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+
+  res.status(statusCode).json({
+    success: false,
+    message: err.message || "Internal Server Error"
+  });
+};
+
+module.exports = errorHandler;
+4️⃣ Use Exception in Controller
+
+Example inside controller:
+
+const AppError = require("../exceptions/AppError");
+
+exports.getProduct = (req, res, next) => {
+
+  const product = null;
+
+  if (!product) {
+    return next(new AppError("Product not found", 404));
+  }
+
+  res.json(product);
+};
+5️⃣ Connect Error Middleware to Server
+
+📄 server.js
+
+const express = require("express");
+const app = express();
+
+const errorHandler = require("./middleware/errorHandler");
+
+app.use(express.json());
+
+// routes
+app.use("/api/products", require("./routes/productRoutes"));
+
+// error middleware (always last)
+app.use(errorHandler);
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+6️⃣ Example Error Response
+
+If product not found:
+
+{
+  "success": false,
+  "message": "Product not found"
+}

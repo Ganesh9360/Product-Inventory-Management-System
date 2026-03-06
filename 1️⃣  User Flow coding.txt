@@ -1,0 +1,84 @@
+1️⃣ Example User Flow
+
+Example: Login System
+
+User Opens App
+     ↓
+Login Page
+     ↓
+Enter Username & Password
+     ↓
+Validation
+     ↓
+Dashboard / Error Message
+
+This flow is then implemented with code.
+
+2️⃣ Example Login User Flow Coding (JavaScript)
+function loginUser(username, password){
+
+  if(username === "" || password === ""){
+      console.log("Enter Username and Password");
+      return;
+  }
+
+  if(username === "admin" && password === "1234"){
+      console.log("Redirect to Dashboard");
+  }
+  else{
+      console.log("Invalid Login");
+  }
+
+}
+
+User flow:
+
+Input → Validation → Authentication → Dashboard
+3️⃣ Example Registration User Flow
+User Opens Website
+      ↓
+Click Register
+      ↓
+Enter Details
+      ↓
+Validate Data
+      ↓
+Save to Database
+      ↓
+Login Page
+4️⃣ Example Code (PHP + Database)
+
+Using MySQL
+
+<?php
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+if($username == "" || $password == ""){
+    echo "All fields required";
+}
+else{
+    $sql = "INSERT INTO users(username,password) VALUES('$username','$password')";
+    echo "Registration Successful";
+}
+?>
+5️⃣ Common User Flows in Applications
+Feature	User Flow
+Login	Login → Dashboard
+Shopping	Browse → Add to Cart → Payment
+Booking	Search → Select → Confirm
+Social Media	Register → Profile → Post
+6️⃣ Example E-commerce User Flow
+Home Page
+   ↓
+Product List
+   ↓
+Product Details
+   ↓
+Add to Cart
+   ↓
+Checkout
+   ↓
+Payment
+   ↓
+Order Confirmation

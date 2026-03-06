@@ -1,0 +1,111 @@
+1️⃣ What Middleware Does
+
+Flow of a request:
+
+Client Request
+      ↓
+Middleware
+      ↓
+Route Controller
+      ↓
+Response
+
+Middleware can:
+
+Check authentication 🔐
+
+Validate request data
+
+Log requests
+
+Handle errors
+
+2️⃣ Project Structure Example
+project/
+│
+├── middleware/
+│   └── authMiddleware.js
+│
+├── controllers/
+├── routes/
+└── server.js
+3️⃣ Create Middleware File
+
+Create file:
+
+middleware/authMiddleware.js
+
+Example middleware code:
+
+// middleware/authMiddleware.js
+
+const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({
+      message: "Access denied. No token provided"
+    });
+  }
+
+  if (token === "mysecrettoken") {
+    next(); // continue to next function
+  } else {
+    res.status(403).json({
+      message: "Invalid token"
+    });
+  }
+};
+
+module.exports = authMiddleware;
+
+Explanation:
+
+req → request data
+
+res → response
+
+next() → move to next function
+
+4️⃣ Use Middleware in Routes
+
+Example routes/productRoutes.js
+
+const express = require("express");
+const router = express.Router();
+
+const authMiddleware = require("../middleware/authMiddleware");
+
+router.get("/products", authMiddleware, (req, res) => {
+  res.send("Product list");
+});
+
+module.exports = router;
+
+Now the route runs middleware first.
+
+5️⃣ Example Logging Middleware
+const logger = (req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+};
+
+module.exports = logger;
+6️⃣ Use Middleware in Server
+
+Example server.js
+
+const express = require("express");
+const app = express();
+
+const logger = require("./middleware/logger");
+
+app.use(logger);
+
+app.get("/", (req, res) => {
+  res.send("Server working");
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});

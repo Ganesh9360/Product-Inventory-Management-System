@@ -1,0 +1,68 @@
+1️⃣ Create README File
+
+Create a file in your project root:
+
+README.md
+2️⃣ Project Documentation Coding
+# Project Name
+
+## Description
+This project is a backend API built using Node.js and Express.  
+It manages users and products with authentication.
+
+## Technologies Used
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+3️⃣ API Documentation Section
+## API Endpoints
+
+### Authentication
+
+POST /api/auth/register  
+POST /api/auth/login
+
+### Products
+
+GET /api/products  
+POST /api/products  
+PUT /api/products/:id  
+DELETE /api/products/:id
+4️⃣ Demo Links Section
+## Demo
+
+Live API:
+https://your-project-api.com
+
+Demo Video:
+https://youtube.com/demo-video-link
+
+GitHub Repository:
+https://github.com/username/project-name
+5️⃣ Installation Steps
+## Installation
+
+1. Clone the repository
+
+git clone https://github.com/username/project-name
+
+2. Install dependencies
+
+npm install
+
+3. Run the server
+
+npm start
+6️⃣ Folder Structure Section
+## Folder Structure
+
+project/
+│
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── routes/
+├── server.js
+└── README.md

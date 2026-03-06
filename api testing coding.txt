@@ -1,0 +1,97 @@
+1️⃣ Example API (Product API)
+
+📄 routes/productRoutes.js
+
+const express = require("express");
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.json({
+    message: "All products fetched successfully"
+  });
+});
+
+router.post("/", (req, res) => {
+  const product = req.body;
+
+  res.json({
+    message: "Product created successfully",
+    data: product
+  });
+});
+
+module.exports = router;
+2️⃣ Connect API to Server
+
+📄 server.js
+
+const express = require("express");
+const app = express();
+
+const productRoutes = require("./routes/productRoutes");
+
+app.use(express.json());
+
+// connect routes
+app.use("/api/products", productRoutes);
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+3️⃣ API Testing Using Postman
+
+Open Postman and test:
+
+GET Request
+GET http://localhost:3000/api/products
+
+Response:
+
+{
+  "message": "All products fetched successfully"
+}
+POST Request
+POST http://localhost:3000/api/products
+
+Body (JSON):
+
+{
+  "name": "Laptop",
+  "price": 50000
+}
+
+Response:
+
+{
+  "message": "Product created successfully",
+  "data": {
+    "name": "Laptop",
+    "price": 50000
+  }
+}
+4️⃣ API Testing Using Code (Supertest)
+
+Install package:
+
+npm install supertest jest
+
+Create test file.
+
+📄 tests/product.test.js
+
+const request = require("supertest");
+const app = require("../server");
+
+describe("Product API Test", () => {
+
+  test("GET /api/products", async () => {
+    const response = await request(app).get("/api/products");
+
+    expect(response.statusCode).toBe(200);
+  });
+
+});
+
+Run test:
+
+npm test

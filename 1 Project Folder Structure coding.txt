@@ -1,0 +1,102 @@
+1️⃣ Example Project Folder Structure
+
+Example: Web Application
+
+project/
+│
+├── src/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   └── utils/
+│
+├── public/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── config/
+│
+├── database/
+│
+├── tests/
+│
+└── app.js
+
+Explanation:
+
+Folder	Purpose
+controllers	Handles request logic
+models	Database structure
+routes	API routes
+services	Business logic
+utils	Helper functions
+public	Static files
+2️⃣ Create Folder Structure Using Terminal
+
+Example command (Linux / Mac):
+
+mkdir -p project/src/{controllers,models,routes,services,utils}
+mkdir project/public
+mkdir project/config
+mkdir project/database
+mkdir project/tests
+touch project/app.js
+3️⃣ Example Using Node.js
+
+Folder structure:
+
+node-app/
+│
+├── controllers
+│   └── userController.js
+│
+├── models
+│   └── userModel.js
+│
+├── routes
+│   └── userRoutes.js
+│
+├── middleware
+│
+├── config
+│
+└── server.js
+4️⃣ Example Code to Create Folders (JavaScript)
+
+Using Node.js
+
+const fs = require("fs");
+
+const folders = [
+ "controllers",
+ "models",
+ "routes",
+ "services",
+ "config"
+];
+
+folders.forEach(folder => {
+ fs.mkdirSync(folder, { recursive: true });
+});
+
+console.log("Folders created successfully");
+5️⃣ Example for Student Management System
+student-system/
+│
+├── controllers
+│   ├── studentController.js
+│   └── teacherController.js
+│
+├── models
+│   ├── studentModel.js
+│   └── teacherModel.js
+│
+├── routes
+│
+├── database
+│
+├── views
+│
+└── app.js

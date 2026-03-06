@@ -1,0 +1,88 @@
+1️⃣ Install Node.js
+
+First install Node.js from the official website.
+
+Check installation:
+
+node -v
+npm -v
+
+node -v → shows Node version
+
+npm -v → shows npm version
+
+2️⃣ Create Project Folder
+mkdir my-node-project
+cd my-node-project
+3️⃣ Initialize Node Project
+
+Run this command:
+
+npm init
+
+It will ask details:
+
+package name: my-node-project
+version: 1.0.0
+description: sample node project
+entry point: index.js
+author: your name
+license: MIT
+4️⃣ Quick Initialization
+
+To skip questions:
+
+npm init -y
+
+This automatically creates package.json.
+
+5️⃣ Example package.json
+{
+  "name": "my-node-project",
+  "version": "1.0.0",
+  "description": "sample node app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+This file manages dependencies and scripts.
+
+6️⃣ Create Main File
+touch index.js
+
+Example code:
+
+console.log("Hello Node.js Project");
+
+Run project:
+
+node index.js
+
+Output:
+
+Hello Node.js Project
+7️⃣ Install Packages
+
+Example installing Express.js
+
+npm install express
+
+This will create:
+
+node_modules/
+package-lock.json
+8️⃣ Example Simple Server
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Node.js App");
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});

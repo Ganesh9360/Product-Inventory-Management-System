@@ -1,0 +1,94 @@
+1️⃣ What are Roles in Software?
+
+A role defines the permissions of a user in the system.
+
+Example roles:
+
+Role	Responsibilities
+Admin	Manage users, manage system
+Manager	View reports, manage staff
+User	Use application features
+Guest	Limited access
+
+This concept is common in Computer Security and Software Engineering.
+
+2️⃣ Example Database Structure
+
+Using MySQL
+
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    username VARCHAR(50),
+    password VARCHAR(50),
+    role VARCHAR(20)
+);
+
+Example data:
+
+username	role
+admin1	admin
+john	user
+manager1	manager
+3️⃣ Example Role-Based Coding (JavaScript)
+function checkAccess(role) {
+    if(role === "admin"){
+        console.log("Full Access");
+    }
+    else if(role === "manager"){
+        console.log("Manage Reports");
+    }
+    else if(role === "user"){
+        console.log("Normal Access");
+    }
+    else{
+        console.log("Guest Access");
+    }
+}
+4️⃣ Example Backend Role Check (Node.js)
+
+Using Node.js
+
+function authorize(role){
+  return (req, res, next) => {
+     if(req.user.role === role){
+        next();
+     } else {
+        res.status(403).send("Access Denied");
+     }
+  }
+}
+
+Usage:
+
+app.get("/admin", authorize("admin"), (req,res)=>{
+   res.send("Welcome Admin");
+});
+5️⃣ Example Responsibilities in a System
+Admin
+
+Add / Delete users
+
+Manage database
+
+View all reports
+
+Staff
+
+Update data
+
+Manage records
+
+User
+
+View information
+
+Submit forms
+
+6️⃣ Real Example (Student Management System)
+
+Roles:
+
+Role	Responsibilities
+Admin	Add students, manage teachers
+Teacher	Update marks, attendance
+Student	View marks and attendance

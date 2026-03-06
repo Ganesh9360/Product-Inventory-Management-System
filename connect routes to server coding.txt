@@ -1,0 +1,66 @@
+1️⃣ Project Folder Structure
+project/
+│
+├── routes/
+│   ├── authRoutes.js
+│   └── productRoutes.js
+│
+├── controllers/
+│
+└── server.js
+2️⃣ Create Route File
+
+Example routes/productRoutes.js
+
+const express = require("express");
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.send("Product route working");
+});
+
+module.exports = router;
+3️⃣ Connect Routes in Server
+
+Example server.js
+
+const express = require("express");
+const app = express();
+
+// Import routes
+const productRoutes = require("./routes/productRoutes");
+
+// Middleware
+app.use(express.json());
+
+// Connect routes
+app.use("/api/products", productRoutes);
+
+// Start server
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+4️⃣ Access the Route
+
+Open browser or API tool:
+
+http://localhost:3000/api/products
+
+Output:
+
+Product route working
+5️⃣ Connect Multiple Routes
+
+Example:
+
+const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
+
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+
+API endpoints:
+
+/api/auth/login
+/api/auth/register
+/api/products

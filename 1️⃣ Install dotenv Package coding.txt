@@ -1,0 +1,65 @@
+1️⃣ Install dotenv Package
+
+First install the package using npm.
+
+npm install dotenv
+2️⃣ Create .env File
+
+Create a file named:
+
+.env
+
+Example .env code:
+
+PORT=3000
+DB_HOST=localhost
+DB_NAME=mydatabase
+DB_USER=root
+DB_PASSWORD=123456
+SECRET_KEY=mysecretkey
+
+This file stores important variables.
+
+3️⃣ Load .env Variables in Code
+
+Example server.js:
+
+require("dotenv").config();
+
+const express = require("express");
+const app = express();
+
+const PORT = process.env.PORT;
+
+app.get("/", (req, res) => {
+  res.send("Server running using environment variables");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+4️⃣ Access Environment Variables
+
+Environment variables are accessed using:
+
+process.env.VARIABLE_NAME
+
+Example:
+
+const dbPassword = process.env.DB_PASSWORD;
+5️⃣ Folder Structure Example
+node-project/
+│
+├── .env
+├── server.js
+├── package.json
+├── node_modules/
+└── routes/
+6️⃣ Secure the .env File
+
+Add .env to .gitignore so it is not uploaded to GitHub.
+
+Example .gitignore:
+
+node_modules
+.env
